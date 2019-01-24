@@ -82,7 +82,7 @@ exports.CheckStrictIdNumBy18 = function (txt) {
     txt = txt.toUpperCase();
     var sum = 0;
     var txtArr = txt.split('');
-    for (var i = 0; i < txtArr.length; i++) {
+    for (var i = 0; i < (txtArr.length-1); i++) {
         sum += txtArr[i] * coefficient[i];
     }
     return code[sum % 11] == txtArr[17];
@@ -93,7 +93,7 @@ exports.CheckStrictIdNumBy18 = function (txt) {
  * @param {string} txt 
  */
 exports.CheckMoney = function (txt) {
-    if (!/^[0-9]+(.[0-9]{2})?$/.test(txt)) {
+    if (!/^[0-9]+(.[0-9]{1,2})?$/.test(txt)) {
         return false;
     }
     return true;
@@ -126,7 +126,7 @@ exports.CheckIpV6 = function (txt) {
  * @param {string} txt 
  */
 exports.CheckDate = function (txt) {
-    if (!/^[1-9]\d{3}-([1-9]|1[0-2])-([1-9]|[1-2]\d|3[01])$/.test(txt)) {
+    if (!/^[1-9]\d{3}-(0{0,1}[1-9]|1[0-2])-(0{0,1}[1-9]|[1-2]\d|3[01])$/.test(txt)) {
         return false;
     }
     return true;
@@ -214,7 +214,7 @@ exports.CheckDomainName = function (txt) {
  * @param {string} txt 
  */
 exports.CheckURL = function (txt) {
-    if (!/^(?=^.{3,255}$)(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\d+)*(\/\w+\.\w+)*$/.test(txt)) {
+    if (!/^(?=^.{3,255}$)(http(s)?:\/\/){1}(www\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\d+)*(\/\w+\.\w+)*$/.test(txt)) {
         return false;
     }
     return true;
